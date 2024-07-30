@@ -1,20 +1,26 @@
 ﻿#include "dllmain.hpp"
+#include <amethyst/runtime/ModContext.hpp>
+#include <amethyst/runtime/events/InputEvents.hpp>
+#include <amethyst/Log.hpp>
 
-// Subscribed to amethysts on start join game event in Initialize
-void OnStartJoinGame(OnStartJoinGameEvent& event)
+void RegisterInputs(RegisterInputsEvent& event)
 {
-    Log::Info("The player has joined the game!");
+    auto& keymappings{ Amethyst::GetContext().mOptions->mKeyboardRemappings };
+
+    // "key.sprint" is at index 17 for regular controls.
+    keymappings.at(0)->mKeymappings.at(17).mAllowRemap = false;
+    keymappings.at(0)->mKeymappings.at(17).mKeys = { 87 }; // 87 = W
+
+    // "key.sprint" is at index 34 for full keyboard controls.
+    keymappings.at(1)->mKeymappings.at(34).mAllowRemap = false;
+    keymappings.at(1)->mKeymappings.at(34).mKeys = { 87 }; // 87 = W
 }
 
-// Ran when the mod is loaded into the game by AmethystRuntime
 ModFunction void Initialize(AmethystContext& ctx) 
 {
-    // Initialize Amethyst mod backend
     Amethyst::InitializeAmethystMod(ctx);
 
-    // Logging from <Amethyst/Log.h>
-    Log::Info("Hello, Amethyst World!");
+    Amethyst::GetEventBus().AddListener<RegisterInputsEvent>(&RegisterInputs);
 
-    // Add a listener to a built in amethyst event
-    Amethyst::GetEventBus().AddListener<OnStartJoinGameEvent>(&OnStartJoinGame);
+    Log::Info("[AlwaysSprint] Mod successfully initialized!");
 }

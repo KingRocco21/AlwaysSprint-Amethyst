@@ -1,11 +1,11 @@
+## Why should I install this mod if I can just add W to Sprint in the `options.txt`?
+W is removed from Sprint every time you rebind a control. With this mod, the sprint keybind is hidden, so there are no key conflicts.
+
 # Usage Guide
-
-Start by selecting `Use this template` > `Create a new Repository` and setup a repository. Next clone the repository, and replace the information at the start of the `CMakeLists.txt` file.
-
-```cmake
-project(Amethyst-Template CXX ASM_NASM) # Replace `Amethyst-Template` with the name of your mod
-set(MOD_VERSION "0.1.0") # Replace this with the version number of your mod
-set(MOD_AUTHOR "FrederoxDev") # Replace this with your name
-```
-
-To build this, you need to have also build AmethystAPI seperately
+1. Install [Amethyst](https://github.com/FrederoxDev/Amethyst-Launcher)
+2. Open the Mod Manager in Amethyst Launcher, and click `Open Mods Folder`
+3. Download the latest [AlwaysSprint release](https://github.com/KingRocco21/AlwaysSprint-Amethyst/releases) and the required AmethystRuntime
+4. Add AmethystRuntime and AlwaysSprint to the mods folder
+5. Extract them, and check for duplicate folders inside each mod. If you see duplicate folder names, move the contents out of the duplicate.
+6. Close and reopen Amethyst Launcher, open the `Profile Editor`, and create or edit a profile with AmethystRuntime and AlwaysSprint-Amethyst enabled
+7. Launch the game, and sprint should be toggled on by default.
