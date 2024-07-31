@@ -2,25 +2,44 @@
 #include <amethyst/runtime/ModContext.hpp>
 #include <amethyst/runtime/events/InputEvents.hpp>
 #include <amethyst/Log.hpp>
+#include <minecraft/src-client/common/client/input/Keymapping.hpp>
+#include <vector>
 
 void RegisterInputs(RegisterInputsEvent& event)
 {
-    auto& keymappings{ Amethyst::GetContext().mOptions->mKeyboardRemappings };
+    AmethystContext& context{ Amethyst::GetContext() };
 
-    // "key.sprint" is at index 17 for regular controls.
-    keymappings.at(0)->mKeymappings.at(17).mAllowRemap = false;
-    keymappings.at(0)->mKeymappings.at(17).mKeys = { 87 }; // 87 = W
+    std::vector<Keymapping>& keymappings1{ context.mOptions->mKeyboardRemappings.at(0)->mKeymappings };
+    for (int i{ 0 }; i != keymappings1.size(); ++i)
+    {
+        Keymapping& current{ keymappings1.at(i) };
+        if (current.mAction == "key.sprint")
+        {
+            Log::Info("[{}] key.sprint found at index {}", MOD_NAME, i);
+            current.mKeys = { 87 };
+            current.mAllowRemap = false;
+        }
+    }
 
-    // "key.sprint" is at index 34 for full keyboard controls.
-    keymappings.at(1)->mKeymappings.at(34).mAllowRemap = false;
-    keymappings.at(1)->mKeymappings.at(34).mKeys = { 87 }; // 87 = W
+    std::vector<Keymapping>& keymappings2{ context.mOptions->mKeyboardRemappings.at(1)->mKeymappings };
+    for (int i{ 0 }; i != keymappings2.size(); ++i)
+    {
+        Keymapping& current{ keymappings2.at(i) };
+        if (current.mAction == "key.sprint")
+        {
+            Log::Info("[{}] key.sprint found at index {}", MOD_NAME, i);
+            current.mKeys = { 87 };
+            current.mAllowRemap = false;
+        }
+    }
+    Log::Info("");
 }
 
-ModFunction void Initialize(AmethystContext& ctx) 
+ModFunction void Initialize(AmethystContext& ctx)
 {
     Amethyst::InitializeAmethystMod(ctx);
 
     Amethyst::GetEventBus().AddListener<RegisterInputsEvent>(&RegisterInputs);
 
-    Log::Info("[AlwaysSprint] Mod successfully initialized!");
+    Log::Info("[{}] Mod successfully initialized!", MOD_NAME);
 }
