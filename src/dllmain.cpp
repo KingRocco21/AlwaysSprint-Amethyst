@@ -13,11 +13,13 @@ void RegisterInputs(RegisterInputsEvent& event)
     for (int i{ 0 }; i != keymappings1.size(); ++i)
     {
         Keymapping& current{ keymappings1.at(i) };
+        //Log::Info("{}: {}", i, current.mAction);
         if (current.mAction == "key.sprint")
         {
             Log::Info("[{}] key.sprint found at index {}", MOD_NAME, i);
             current.mKeys = { 87 };
             current.mAllowRemap = false;
+            break;
         }
     }
 
@@ -25,11 +27,13 @@ void RegisterInputs(RegisterInputsEvent& event)
     for (int i{ 0 }; i != keymappings2.size(); ++i)
     {
         Keymapping& current{ keymappings2.at(i) };
+        //Log::Info("{}: {}", i, current.mAction);
         if (current.mAction == "key.sprint")
         {
             Log::Info("[{}] key.sprint found at index {}", MOD_NAME, i);
             current.mKeys = { 87 };
             current.mAllowRemap = false;
+            break;
         }
     }
     Log::Info("");
