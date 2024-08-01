@@ -1,4 +1,4 @@
-# This mod has been replaced my my ToggleSprint mod: [ToggleSprint-Amethyst](https://github.com/KingRocco21/ToggleSprint-Amethyst)
+# This mod has been replaced by my ToggleSprint mod: [ToggleSprint-Amethyst](https://github.com/KingRocco21/ToggleSprint-Amethyst)
 
 ## Why should I install this mod if I can just add W to Sprint in the `options.txt`?
 W is removed from Sprint every time you rebind a control. With this mod, the sprint keybind is hidden, so there are no key conflicts.
